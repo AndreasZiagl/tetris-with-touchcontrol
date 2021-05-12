@@ -50,12 +50,6 @@ var rotationType = 0;
 
 var stone = [];
 
-//Audio
-var a_music = new Audio('res/tetris_theme_short.mp3');
-a_music.loop = true;
-a_music.volume = 0.15;
-a_music.preload = 'auto';
-
 var a_move = new Audio('res/move.mp3');
 var a_spin = new Audio('res/rotate.mp3');
 var a_land = new Audio('res/land.mp3');
@@ -65,9 +59,6 @@ var a_single = new Audio('res/1_single.mp3');
 var a_double = new Audio('res/2_double.mp3');
 var a_triple = new Audio('res/3_triple.mp3');
 var a_tetris = new Audio('res/4_tetris.mp3');
-
-var a_gameover = new Audio('res/gameover.mp3');
-a_gameover.volume = 0.1;
 
 //Init Field
 function initField() {
@@ -130,10 +121,6 @@ function checkKeyDown(e) {
             // right arrow
             moveStoneInField(false);
         }
-        else if (e.keyCode == '77') {
-            // right arrow
-            a_music.play();
-        }
     }
 }
 
@@ -176,7 +163,6 @@ function main() {
     drawField();
     initField();
     spawnStone();
-    a_music.play();
     run();
 }
 
@@ -347,10 +333,6 @@ function updateStoneInField() {
             var temp2 = parseInt(temp[0]+1);
             if(field[temp[0]][temp[1]] > 0 && field[temp2][temp[1]] > 0) {
                 gameOver = true;
-                a_music.pause();
-                a_music.currentTime = 0;
-
-                a_gameover.play();
 
                 drawGameOver();
             }
